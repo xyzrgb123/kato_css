@@ -1,0 +1,27 @@
+color = {
+    default: #212529,
+    primary: #0D6EFD,
+    success: #198754,
+    danger: #DC3545,
+    warning: #FFC107,
+    info: #0DCAF0,
+    blabla: #9d0df0,
+}
+
+// Вариации основных цветов
+for k, v in color
+    color[k] = v lightness(v, 97%) lightness(v, 90%) lightness(v, 75%) lightness(v, 40%) lightness(v, 20%)
+
+// Закидываем цвета в переменные
+*
+    for n in (0..(length(color.default)))
+        --c{n} color.default[n]
+
+for k, v in color
+    .{k} *
+        for n in (0..(length(v)))
+            --c{n} v[n]
+    .{k}
+        for n in (0..(length(v)))
+            t = v[n]
+            --c{n} t !important

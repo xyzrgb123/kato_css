@@ -1,0 +1,58 @@
+.alert
+    padding 1rem
+    border-radius var(--rem1)
+    border-style solid
+    color var(--c5)
+    background-color var(--c2)
+    border-color var(--c4)
+
+.btn
+    display inline-block
+    padding var(--rem1) 0.75rem
+    text-align center
+    border-radius var(--rem1)
+    border-style solid
+    cursor pointer
+    line-height 1.5
+    color var(--c1)
+    background-color var(--c4)
+    border-color var(--c2)
+    &:hover
+        background-color var(--c5)
+    &:active
+    &.active
+        color var(--c5)
+        background-color var(--c2)
+        border-color var(--c4)
+    &[disabled]
+        cursor default
+        background-color var(--c3)
+
+.badge
+    display inline-block
+    font-size 0.75em
+    font-weight 700
+    padding 0.35em 0.65em
+    border-radius var(--rem1)
+    text-align center
+    line-height 1
+    white-space nowrap
+    vertical-align baseline
+    color var(--c1)
+    background-color var(--c4)
+    &.corner
+        position absolute
+        right 0
+        top 0
+        border-radius 50rem
+        transform translate(50%, -50%)
+
+box(str)
+    {'.' + str + ':not(.group), .' + str + '>*'}
+        {block}
+
++box('ttt')
+    color red
+
+
+
