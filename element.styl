@@ -1,4 +1,8 @@
-.alert
+box(str)
+    {'.' + str + ':not(.group), .' + str + '.group>*'}
+        {block}
+
++box('alert')
     padding 1rem
     border-radius var(--rem1)
     border-style solid
@@ -6,7 +10,8 @@
     background-color var(--c2)
     border-color var(--c4)
 
-.btn
+// .btn
++box('btn')
     display inline-block
     padding var(--rem1) 0.75rem
     text-align center
@@ -47,14 +52,8 @@
         border-radius 50rem
         transform translate(50%, -50%)
 
-box(str)
-    {'.' + str + ':not(.group), .' + str + '>*'}
-        {block}
 
-+box('ttt')
-    color red
 
-// adfasdfasdf
 
 
 
