@@ -1,0 +1,8 @@
+box(str)
+    str2 = ''
+    for i in str
+        if str2 != ''
+            str2 += ', '
+        str2 += i + ':not(.group), ' + i + '.group>*'
+    {str2}
+        {block}

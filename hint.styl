@@ -1,0 +1,64 @@
+[hint]
+[hint].hint-top
+.hint-top [hint]
+    border-style solid
+    padding 10px
+    display inline-block
+    --between 6px
+    &:hover
+        &:after
+            font-size .8rem
+            padding .2rem .5rem
+            border-radius var(--rem1)
+            background-color var(--c5)
+            line-height 1.5
+            color var(--c1)
+            content attr(hint)
+            position absolute
+            left 50%
+            top 0
+            transform translate(-50%, calc(-100% - var(--between)))
+        &:before
+            content ''
+            width var(--between)
+            height @width
+            background-color var(--c5)
+            position absolute
+            left 50%
+            top 0
+            transform translate(-50%, calc(-100% - var(--between) / 2) ) rotate(45deg)
+
+[hint].hint-right
+.hint-right [hint]
+    &:after
+        left 100%
+        top 50%
+        transform translate(var(--between), -50%)
+    &:before
+        left 100%
+        top 50%
+        transform translate(calc(var(--between)/2), -50% ) rotate(45deg)
+
+[hint].hint-bottom
+.hint-bottom [hint]
+    &:after
+        left 50%
+        top 100%
+        transform translate(-50%, var(--between))
+    &:before
+        left 50%
+        top 100%
+        transform translate(-50%, calc(var(--between)/2)) rotate(45deg)
+
+[hint].hint-left
+.hint-left [hint]
+    &:after
+        left auto
+        right 100%
+        top 50%
+        transform translate(calc(var(--between)*(-1)), -50%)
+    &:before
+        left auto
+        right 100%
+        top 50%
+        transform translate(calc(var(--between)*(-.5)), -50% ) rotate(45deg)
