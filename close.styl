@@ -1,0 +1,35 @@
+.test
+    margin 1rem
+.close
+    --width .1em
+    width 2em
+    height @width
+    position relative
+    border-radius var(--rem1)
+    // background-color var(--c1)
+    cursor pointer
+    border-color var(--c4)
+    background-color var(--c2)
+    border-style solid
+    position absolute
+    top .5em
+    right @top
+    // transform translate(-100%, 0)
+    &:after
+    &:before
+        content ''
+        position absolute
+        background-color var(--c4)
+        width var(--width)
+        height 80%
+        top 50%
+        left 50%
+    &:after
+        transform translate(-50%, -50%) rotate(45deg)
+    &:before
+        transform translate(-50%, -50%) rotate(-45deg)
+    &:hover
+        background-color var(--c1)
+        &:after
+        &:before
+            background-color var(--c5)  
