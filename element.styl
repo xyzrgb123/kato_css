@@ -1,8 +1,13 @@
 box(str)
-    {'.' + str + ':not(.group), .' + str + '.group>*'}
+    str2 = ''
+    for i in str
+        if str2 != ''
+            str2 += ', '
+        str2 += i + ':not(.group), ' + i + '.group>*'
+    {str2}
         {block}
 
-+box('alert')
++box('.alert')
     padding 1rem
     border-radius var(--rem1)
     border-style solid
@@ -10,8 +15,7 @@ box(str)
     background-color var(--c2)
     border-color var(--c4)
 
-// .btn
-+box('btn')
++box('.btn' 'button')
     display inline-block
     padding var(--rem1) 0.75rem
     text-align center
@@ -52,8 +56,90 @@ box(str)
         border-radius 50rem
         transform translate(50%, -50%)
 
++box('.item')
+    color var(--c5)
+    list-style-type none
+    background-color var(--c1)
+    padding 0.5rem 1rem
+    border-width inherit
+    border-color inherit
+    border-color var(--c3)
+    border-width var(--border-width)
+    border-style solid
+    border-radius var(--rem1)
 
++box('.item.clickable')
+    &[disabled]
+        color var(--c3)
+    &:not([disabled])
+        cursor pointer
+        &.active
+        &:hover
+            background-color var(--c2)
+            color var(--c7)
 
+[hint]
+[hint].hint-top
+.hint-top [hint]
+    border-style solid
+    padding 10px
+    display inline-block
+    --between 6px
+    &:hover
+        &:after
+            font-size .8rem
+            padding .2rem .5rem
+            border-radius var(--rem1)
+            background-color var(--c5)
+            line-height 1.5
+            color var(--c1)
+            content attr(hint)
+            position absolute
+            left 50%
+            top 0
+            transform translate(-50%, calc(-100% - var(--between)))
+        &:before
+            content ''
+            width var(--between)
+            height @width
+            background-color var(--c5)
+            position absolute
+            left 50%
+            top 0
+            transform translate(-50%, calc(-100% - var(--between) / 2) ) rotate(45deg)
 
+[hint].hint-right
+.hint-right [hint]
+    &:after
+        left 100%
+        top 50%
+        transform translate(var(--between), -50%)
+    &:before
+        left 100%
+        top 50%
+        transform translate(calc(var(--between)/2), -50% ) rotate(45deg)
 
+[hint].hint-bottom
+.hint-bottom [hint]
+    &:after
+        left 50%
+        top 100%
+        transform translate(-50%, var(--between))
+    &:before
+        left 50%
+        top 100%
+        transform translate(-50%, calc(var(--between)/2)) rotate(45deg)
+
+[hint].hint-left
+.hint-left [hint]
+    &:after
+        left auto
+        right 100%
+        top 50%
+        transform translate(calc(var(--between)*(-1)), -50%)
+    &:before
+        left auto
+        right 100%
+        top 50%
+        transform translate(calc(var(--between)*(-.5)), -50% ) rotate(45deg)
 
