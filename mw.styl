@@ -1,0 +1,27 @@
+#mw_bg
+    position fixed
+    visibility hidden
+    width 100vw
+    height 100vh
+    background-color alpha(black, 0)
+    z-index 1000
+    &>*
+        background-color var(--c1)
+        border-color var(--c3)
+        border-radius var(--rem1)
+        padding 1rem
+        border-style solid
+        color var(--c5)
+        position absolute
+        top 80px
+        left 50%
+        transform translate(-50%, 0)
+        visibility hidden
+        opacity 0
+    &.active
+        visibility visible
+        background-color alpha(black, .5)
+    &>.active
+        visibility visible
+        opacity 1
+

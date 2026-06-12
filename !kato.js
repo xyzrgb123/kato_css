@@ -1,5 +1,4 @@
 // добавление класса active кликнутому элементу
-
 document.querySelectorAll('.group.clickable:not(.oo)>*').forEach(el => {
   if (!el.hasAttribute('disabled')) {
     el.addEventListener('click', () => {
@@ -20,44 +19,28 @@ document.querySelectorAll('.group.clickable.oo>*').forEach(el => {
 });
 
 // спойлер
-// // document.addEventListener('DOMContentLoaded', () => {
-// window.addEventListener('load', function() {
-
-
-// document.querySelectorAll('.spoiler').forEach(el => {
-    
-//     const height = el.nextElementSibling.clientHeight;
-//     // alert(height)
-//     el.nextElementSibling.style.setProperty('--spoiler', -height + 'px');
-//     el.addEventListener('click', () => {
-//       // const height = el.nextElementSibling.offsetHeight;
-//       // alert(height);
-//       // el.nextElementSibling.style.setProperty('--spoiler', -height + 'px');
-//       el.classList.toggle('active');
-//     });
-// });
-// });
-
-// const app = new VTTCue({
-// 	el: '#app',
-// 	data: {
-// 		name: 'mario'
-// 	},
-// 	methods: {
-// 		alertHandler() {
-// 			this.name = 'привет мир'
-// 			alert('привет мир')
-// 		}
-// 	},
-// })
-
-// $('body').addClass('test')
-
 $('.spoiler').next().slideUp();
-
 $('.spoiler').on("click", function() {
-  $(this).toggleClass('active');
-  $(this).next().slideToggle()
+	$(this).toggleClass('active');
+	$(this).next().slideToggle()
 });
 
+// модальное окно
+// открыть
+document.querySelectorAll('[mw]').forEach(el => {
+el.addEventListener('click', () => {
+var bg = document.getElementById("mw_bg");
+var win = document.getElementById(el.getAttribute("mw"));
+bg.classList.add("active");
+win.classList.add("active");
+})
+});
+// закрыть
+document.querySelectorAll('.mw_close').forEach(el => {
+el.addEventListener('click', () => {
+	var bg = document.getElementById("mw_bg");
+	bg.querySelector(".active").classList.remove("active");
+	bg.classList.remove("active")
 
+})
+});
