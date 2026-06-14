@@ -1,6 +1,9 @@
 html
     background-color rgb(178, 178, 201)
 
+body
+    padding 2rem
+
 *, ::after, ::before
     font-family system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
     box-sizing border-box
@@ -10,13 +13,14 @@ html
     font-weight 400
     transition 200ms
     margin 0
-    // padding-top 0
-    // padding-bottom 0
-    // padding-left 0
-    // padding-right 0
     padding 0
     border-width var(--border-width)
 
+[disabled]
+    cursor auto !important
+    background-color var(--background-color-disabled, var(--background-color)) !important
+    border-color var(--border-color-disabled, var(--border-color)) !important
+    color var(--color-disabled, var(--color)) !important
 
 ol
     counter-reset n

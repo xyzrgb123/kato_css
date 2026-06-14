@@ -1,5 +1,5 @@
 // добавление класса active кликнутому элементу
-document.querySelectorAll('.group.clickable:not(.oo)>*').forEach(el => {
+document.querySelectorAll('.group.btn:not(.oo)>*').forEach(el => {
   if (!el.hasAttribute('disabled')) {
     el.addEventListener('click', () => {
       el.classList.toggle('active');
@@ -8,7 +8,7 @@ document.querySelectorAll('.group.clickable:not(.oo)>*').forEach(el => {
 });
 
 // снять класс active с сестренского элемента и добавить кликнутому
-document.querySelectorAll('.group.clickable.oo>*').forEach(el => {
+document.querySelectorAll('.group.btn.oo>*').forEach(el => {
   if (!el.hasAttribute('disabled')) {
     el.addEventListener('click', () => {
       const active_bro = el.parentElement.querySelector('.active');

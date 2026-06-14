@@ -1,0 +1,150 @@
+boxes = empty
+
+box(str)
+    str2 = ''
+    for i in str
+        push(boxes, i)
+        if str2 != ''
+            str2 += ', '
+        str2 += i + ':not(.group), ' + i + '.group>*'
+    {str2}
+        {block}
+
+.group
+    display inline-flex
+    &:not(.vertical)>*
+        &:not(:last-child)
+            border-right-width calc(var(--border-width) / 2)
+            border-top-right-radius 0
+            border-bottom-right-radius 0
+        &:not(:first-child)
+            border-left-width calc(var(--border-width) / 2)
+            border-top-left-radius 0
+            border-bottom-left-radius 0
+    &.vertical
+        flex-direction column
+        align-items flex-start
+        &>*
+            flex 1 1 auto
+            width 100%
+            &:not(:last-child)
+                border-bottom-width calc(var(--border-width) / 2)
+                border-bottom-right-radius 0
+                border-bottom-left-radius 0
+            &:not(:first-child)
+                border-top-width calc(var(--border-width) / 2)
+                border-top-right-radius 0
+                border-top-left-radius 0
+
++box('.btn')
+    &:hover:not(.active):not(:active):not([disabled])
+        cursor pointer
+        background-color var(--background-color-hover, var(--background-color))
+        border-color var(--border-color-hover, var(--border-color))
+        color var(--color-hover, var(--color))
+    &:active:not([disabled])
+    &.active:not([disabled])
+        background-color var(--background-color-active, var(--background-color))
+        border-color var(--border-color-active, var(--border-color))
+        color var(--color-active, var(--color))
+
++box('.s1')
+    padding 1rem
+    border-radius var(--rem1)
+    border-style solid
+
+    --background-color var(--c2)
+    --border-color var(--c3)
+    --color var(--c4)
+
+    --color-hover var(--c5)
+    --color-active var(--c5)
+    --color-disabled var(--c3)
+
++box('.s2')
+    display inline-block
+    padding var(--rem1) 0.75rem
+    text-align center
+    border-radius var(--rem1)
+    border-style solid
+    line-height 1.5
+
+    --background-color var(--c4)
+    --border-color var(--c2)
+    --color var(--c1)
+
+    --background-color-hover var(--c5)
+    --background-color-active var(--c2)
+    --background-color-disabled var(--c3)
+
+    --color-active var(--c5)
+
+    --border-color-active var(--c4)
+
++box('.s3')
+    padding 0.5rem 1rem
+    border-style solid
+    border-radius var(--rem1)
+
+    --background-color var(--c1)
+    --border-color var(--c3)
+    --color var(--c5)
+
+    --background-color-hover var(--c2)
+    --background-color-active var(--c2)
+    --border-color-active var(--c4)
+
+    --color-hover var(--c7)
+
+    --color-disabled var(--c3)
+
++box('.s4')
+    color var(--c4)
+    &:not(:last-child):after
+        content '/'
+        margin-left .5em
+        margin-right .5em
+
++box(boxes)
+    list-style-type none
+    background-color var(--background-color)
+    border-color var(--border-color)
+    color var(--color)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// .btn.group
+//     &>*
+//         &:hover
+//             &>*
+//                 display block
+//         &>*
+//             position absolute
+//             border-radius var(--rem1)
+//             border-style solid
+//             background-color inherit
+//             padding inherit
+//             top 100%
+//             left 0
+//             display none
+//         &:has(*)
+//             &:after
+//                 display inline-block
+//                 margin-left .5em
+//                 vertical-align .255em
+//                 content ""
+//                 border-top .3em solid
+//                 border-right .3em solid transparent
+//                 border-bottom 0
+//                 border-left .3em solid transparent
