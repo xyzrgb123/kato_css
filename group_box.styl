@@ -6,35 +6,61 @@ box(str)
         push(boxes, i)
         if str2 != ''
             str2 += ', '
-        str2 += i + ':not(.group), ' + i + '.group>*'
+        str2 += i + ':not(.g), ' + i + '.g>*'
     {str2}
         {block}
 
-.group
+
+
+.g1
     display inline-flex
-    &:not(.vertical)>*
+    &>*
         &:not(:last-child)
             border-right-width calc(var(--border-width) / 2)
-            border-top-right-radius 0
-            border-bottom-right-radius 0
+            border-top-right-radius 0 !important
+            border-bottom-right-radius 0 !important
         &:not(:first-child)
             border-left-width calc(var(--border-width) / 2)
-            border-top-left-radius 0
-            border-bottom-left-radius 0
-    &.vertical
-        flex-direction column
-        align-items flex-start
-        &>*
-            flex 1 1 auto
-            width 100%
-            &:not(:last-child)
-                border-bottom-width calc(var(--border-width) / 2)
-                border-bottom-right-radius 0
-                border-bottom-left-radius 0
-            &:not(:first-child)
-                border-top-width calc(var(--border-width) / 2)
-                border-top-right-radius 0
-                border-top-left-radius 0
+            border-top-left-radius 0 !important
+            border-bottom-left-radius 0 !important
+
+.g2
+    display inline-flex
+    flex-direction column
+    align-items flex-start
+    &>*
+        flex 1 1 auto
+        width 100%
+        &:not(:last-child)
+            border-bottom-width calc(var(--border-width) / 2)
+            border-bottom-right-radius 0 !important
+            border-bottom-left-radius 0 !important
+        &:not(:first-child)
+            border-top-width calc(var(--border-width) / 2)
+            border-top-right-radius 0 !important
+            border-top-left-radius 0 !important
+
+.g3
+    display inline-flex
+    flex-direction row-reverse
+    --lay 2.5em
+    --lay2 .8em
+    counter-reset num 1
+    &>*
+        line-height default !important
+        font-size .5rem
+        padding-left calc(var(--border-width) + var(--lay)) !important
+        padding-right 1.8em !important
+        padding-bottom .1em !important
+        padding-top .05em !important
+        border-top-left-radius 0 !important
+        border-top-right-radius 0 !important
+        border-bottom-left-radius 0 !important
+        border-bottom-right-radius 50rem !important
+        margin-left calc((var(--border-width) + var(--lay))*(-1))
+        &:last-child
+            padding-left var(--lay2) !important
+            margin-left 0
 
 +box('.btn')
     &:hover:not(.active):not(:active):not([disabled])
@@ -98,20 +124,14 @@ box(str)
 
     --color-disabled var(--c3)
 
-+box('.s4')
-    color var(--c4)
-    &:not(:last-child):after
-        content '/'
-        margin-left .5em
-        margin-right .5em
-
 +box(boxes)
-    list-style-type none
+    list-style none
     background-color var(--background-color)
     border-color var(--border-color)
     color var(--color)
-
-
+    &>a
+        text-decoration none
+        color var(--color)
 
 
 
