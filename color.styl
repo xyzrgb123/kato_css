@@ -1,4 +1,6 @@
-color = {
+// ЦВЕТОВАЯ ТЕМА
+
+color_theme = {
     t0: #212529,
     t1: #0D6EFD,
     t2: #198754,
@@ -9,16 +11,100 @@ color = {
 }
 
 // Вариации основных цветов
-for k, v in color
-    color[k] = v lightness(v, 97%) lightness(v, 90%) lightness(v, 75%) lightness(v, 40%) lightness(v, 20%)
+for k, v in color_theme
+    color_theme[k] = v lightness(v, 97%) lightness(v, 90%) lightness(v, 75%) lightness(v, 40%) lightness(v, 20%)
 
-// Закидываем цвета в переменные
-:root
-    for n in (0..(length(color.t0)))
-        --c{n} color.t0[n]
-
-for k, v in color
+// Закидываем переменные в одноименные темам классы
+for k, v in color_theme
     .{k}
-        for n in (0..(length(v)))
+        for i, n in v
             t = v[n]
             --c{n} t
+:root
+    @extend .t0
+
+// ЦВЕТОВОЙ СЕТ
+
+color_system = {bg: transparent, bc: currentColor, c: currentColor}
+action_pref = 'default' 'h' 'a' 'd'
+
+color_set = {
+    cs0: {
+        default: {bg: 1, bc: 2, c: 5},
+        h: {bg: 2, bc: 3},
+        a: {bg: 2, bc: 4},
+        d: {c: 4},
+    },
+    cs1: {
+        default: {bg: 4, bc: 2, c: 1},
+        h: {bg: 3}
+    }
+}
+
+// если какого-то состояния нет, его надо добавить
+for k, v in color_set
+    for i in action_pref
+        if !(i in keys(v))
+            color_set[k][i] = {}
+
+// если в каком-то дефолтном сете нет значения, его надо добавить
+for k3, v3 in color_set
+    for k2, v2 in v3['default']
+        for k1, v1 in color_system
+            if !(k1 in keys(v3['default']))
+                color_set[k3]['default'][k1] = v1
+
+// если в каком-то сете нет значения, его надо добавить
+for k3, v3 in color_set
+    dv = {}
+    for k2, v2 in v3
+        if k2 == 'default'
+            dv = v2
+        else
+            for k1, v1 in dv
+                if !(k1 in keys(v2))
+                    color_set[k3][k2][k1] = v1
+
+// закидываем дефолтный сет в переменные
+for k3, v3 in color_set
+    .{k3}
+        for k2, v2 in v3
+            pref = '-' + k2
+            if pref == '-default'
+                pref = ''
+            for k1, v1 in v2
+                if v1 is a 'unit'
+                    --cs-{k1}{pref} s('var(--c' + v1 + ')')
+                else
+                    --cs-{k1}{pref} v1
+:root
+    @extend .cs0
+
+.{join(', .', keys(color_set))}
+    background-color var(--cs-bg)
+    border-color var(--cs-bc)
+    color var(--cs-c)
+
+.btn
+    &.hover:not(.active):not(:active):not([disabled])
+        cursor pointer
+        background-color var(--cs-bg-h, var(--cs-bg))
+        border-color var(--cs-bc-h, var(--cs-bc))
+        color var(--cs-c-h, var(--cs-c))
+    &:active:not([disabled])
+    &.active:not([disabled])
+        background-color var(--cs-bg-a, var(--cs-bg))
+        border-color var(--cs-bc-a, var(--cs-bc))
+        color var(--cs-c-a, var(--cs-c))
+
+[disabled]
+    cursor auto !important
+    background-color var(--cs-bg-d, var(--cs-bg))
+    border-color var(--cs-bc-d, var(--cs-bc))
+    color var(--cs-c-d, var(--cs-c))
+
+
+
+
+
+

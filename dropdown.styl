@@ -1,0 +1,27 @@
+.dd
+    &h
+    &a
+        @extend .arrow
+        &>*
+            position absolute
+            background-color var(--c2)
+            border-color var(--c3)
+            color var(--c5)
+            border-style solid
+            border-bottom-left-radius var(--rem1)
+            border-bottom-right-radius var(--rem1)
+            padding .5rem
+            left 0
+            top 100%
+            transform scaley(0)
+            transform-origin top
+    &a
+        cursor pointer
+    &h:hover
+    &a.active
+        border-bottom-left-radius 0
+        border-bottom-right-radius 0
+        &>*
+            transform scaley(1)
+
+

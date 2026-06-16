@@ -41,6 +41,12 @@ el.addEventListener('click', () => {
 	var bg = document.getElementById("mw_bg");
 	bg.querySelector(".active").classList.remove("active");
 	bg.classList.remove("active")
-
 })
+});
+
+// дропдаун
+document.querySelectorAll('.dda').forEach(el => {
+    el.addEventListener('click', () => {
+      el.classList.toggle("active")
+    })
 });
