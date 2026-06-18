@@ -1,0 +1,203 @@
+// шрифт - 1
+// паддинг - 4
+
+// маргин - 4
+// сетка - 2
+
+// бордер - 4
+// радиус - 4
+
+
+
+
+
+
+
+
+
+
+*
+    // Унификация размеров
+    --k .25
+    --kv .3
+    for i in (1..20)
+        --krem{i} "calc(var(--k) * %s)" % (unit(i, rem))
+        --kem{i} "calc(var(--k) * %s)" % (unit(i, em))
+        --kv{i} "calc(var(--k) * %s)" % (unit(i, vw))
+    
+    --s-fs var(--krem4)
+
+    --s-p 0
+    --s-px var(--s-p)
+    --s-py var(--s-p)
+    --s-pt var(--s-py, var(--s-p))
+    --s-pr var(--s-px, var(--s-p))
+    --s-pb var(--s-py, var(--s-p))
+    --s-pl var(--s-px, var(--s-p))
+
+    --s-m 0
+    --s-mx var(--s-m)
+    --s-my var(--s-m)
+    --s-mt var(--s-my, var(--s-m))
+    --s-mr var(--s-mx, var(--s-m))
+    --s-mb var(--s-my, var(--s-m))
+    --s-ml var(--s-mx, var(--s-m))
+
+    --s-g 0
+    --s-gg var(--s-g)
+    --s-gv var(--s-g)
+
+    --s-b 0
+    --s-bx var(--s-b)
+    --s-by var(--s-b)
+    --s-bt var(--s-by, var(--s-b))
+    --s-br var(--s-bx, var(--s-b))
+    --s-bb var(--s-by, var(--s-b))
+    --s-bl var(--s-bx, var(--s-b))
+
+    --s-r 0
+    --s-rt var(--s-r)
+    --s-rr var(--s-r)
+    --s-rb var(--s-r)
+    --s-rl var(--s-r)
+    --s-rtl var(--s-rt, var(--s-rl))
+    --s-rtr var(--s-rt, var(--s-rr))
+    --s-rbr var(--s-rb, var(--s-rr))
+    --s-rbl var(--s-rb, var(--s-rl))
+
+
+size_set = {
+    ss0: {
+        fs: var(--krem4),
+        p: var(--krem4),
+        b: 1px,
+        r: var(--krem1),
+        mb: var(--krem5)
+    },
+    ss1: {
+        fs: var(--krem8),
+        p: var(--krem8),
+        b: 1px,
+        r: var(--krem2)
+    }
+}
+
+for k2, v2 in size_set
+    .{k2}
+        for k1, v1 in v2
+            --s-{k1} v1
+
+// :root
+//     @extend .ss0
+
+
+.ss
+    font-size var(--s-fs)
+    padding-top var(--s-pt)
+    padding-right var(--s-pr)
+    padding-bottom var(--s-pb)
+    padding-left var(--s-pl)
+
+    margin-top var(--s-mt)
+    margin-right var(--s-mr)
+    margin-bottom var(--s-mb)
+    margin-left var(--s-ml)
+
+    row-gap var(--s-gg)
+    column-gap var(--s-gv)
+
+    border-top-width var(--s-bt)
+    border-right-width var(--s-br)
+    border-bottom-width var(--s-bb)
+    border-left-width var(--s-bl)
+
+    border-top-left-radius var(--s-rtl)
+    border-top-right-radius var(--s-rtr)
+    border-bottom-right-radius var(--s-rbr)
+    border-bottom-left-radius var(--s-rbl)
+
+
+body *
+    border-style solid
+    // border-style outset // выпуклость
+    // border-style inset // вдавленность
+    // border-style ridge // гребень
+    // border-style groove // желоб
+    // border-style double // двойная сплошная
+    // border-style dashed // пунктир
+    // border-style dotted // точки
+    // border-top-width var(--s-bt)
+    // border-right-width var(--s-br)
+    // border-bottom-width var(--s-bb)
+    // border-left-width var(--s-bl)
+
+
+
+
+
+
+
+
+    
+
+
+// .rrr1
+// .rrr2
+//     padding .5rem
+//     border 1px solid
+//     float left
+//     // &>*
+//     //     height 100px
+
+// .rrr1
+//     transform scalex(-1)
+
+//     .i1
+//         font-size calc(var(--krem5) + var(--kv1))
+//     .i2
+//         font-size calc(var(--krem5) + var(--kv2))
+//     .i3
+//         font-size calc(var(--krem6) + var(--kv3))
+//     .i4
+//         font-size calc(var(--krem6) + var(--kv5))
+//     .i5
+//         font-size calc(var(--krem6) + var(--kv7))
+//     .i6
+//         font-size calc(var(--krem6) + var(--kv9))
+//     .i7
+//         font-size calc(var(--krem6) + var(--kv11))
+//     .i8
+//         font-size calc(var(--krem6) + var(--kv13))
+//     .i9
+//         font-size calc(var(--krem7) + var(--kv15))
+
+// .rrr2
+//     padding .5rem
+//     border 1px solid
+//     float left
+//     .i1
+//         font-size calc(1.275rem + 0.3vw)
+//     .i2
+//         font-size calc(1.3rem + 0.6vw)
+//     .i3
+//         font-size calc(1.325rem + 0.9vw)
+//     .i4
+//         font-size calc(1.375rem + 1.5vw)
+//     .i5
+//         font-size calc(1.425rem + 2.1vw)
+//     .i6
+//         font-size calc(1.475rem + 2.7vw)
+//     .i7
+//         font-size calc(1.525rem + 3.3vw)
+//     .i8
+//         font-size calc(1.575rem + 3.9vw)
+//     .i9
+//         font-size calc(1.625rem + 4.5vw)
+
+
+
+
+
+
+
+
