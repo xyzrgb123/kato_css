@@ -1,137 +1,28 @@
-boxes = empty
+ar_parent = ()
+ar_parent2 = ()
 
-box(str)
-    str2 = ''
-    for i in str
-        push(boxes, i)
-        if str2 != ''
-            str2 += ', '
-        str2 += i + ':not(.g), ' + i + '.g>*'
-    {str2}
-        {block}
+for i in (1..5)
+    push(ar_parent2, '-' + i)
+    push(ar_parent, '-' + i + '>*:nth-child(' + i + ')')
+    if i != 1
+        push(ar_parent2, '-' + i + 'n')
+        push(ar_parent, '-' + i + 'n' + '>*:nth-child(' + i + 'n' + ')')
     
-    if substr(str[0], 0, 1) == '.'
-        box_name = substr(str[0], 1)
-        {'.box-' + box_name}
-            {block}
+        for ii in (1..5)
+            if ii != i
+                push(ar_parent2, '-' + i + ii)
+                push(ar_parent, '-' + i + ii + '>*:nth-child(' + i + 'n' + ' + ' + ii + ')')
 
-
-.g1
-    display inline-flex
-    &>*
-        &:not(:last-child)
-            border-right-width calc(var(--border-width) / 2)
-            border-top-right-radius 0 !important
-            border-bottom-right-radius 0 !important
-        &:not(:first-child)
-            border-left-width calc(var(--border-width) / 2)
-            border-top-left-radius 0 !important
-            border-bottom-left-radius 0 !important
-
-.g2
-    display inline-flex
-    flex-direction column
-    align-items flex-start
-    &>*
-        flex 1 1 auto
-        width 100%
-        &:not(:last-child)
-            border-bottom-width calc(var(--border-width) / 2)
-            border-bottom-right-radius 0 !important
-            border-bottom-left-radius 0 !important
-        &:not(:first-child)
-            border-top-width calc(var(--border-width) / 2)
-            border-top-right-radius 0 !important
-            border-top-left-radius 0 !important
-
-.g3
-    display inline-flex
-    flex-direction row-reverse
-    --lay 2.5em
-    --lay2 .8em
-    counter-reset num 1
-    &>*
-        line-height default !important
-        padding-left calc(var(--border-width) + var(--lay)) !important
-        padding-right 1.8em !important
-        padding-bottom .1em !important
-        padding-top .05em !important
-        border-top-left-radius 0 !important
-        border-top-right-radius 0 !important
-        border-bottom-left-radius 0 !important
-        border-bottom-right-radius 50rem !important
-        margin-left calc((var(--border-width) + var(--lay))*(-1))
-        &:last-child
-            padding-left var(--lay2) !important
-            margin-left 0
-
-+box('.s1')
-    padding 1rem
-    border-radius var(--rem1)
-    border-style solid
-
-    --background-color var(--c2)
-    --border-color var(--c3)
-    --color var(--c4)
-
-    --color-hover var(--c5)
-    --color-active var(--c5)
-    --color-disabled var(--c3)
-
-+box('.s2')
-    display inline-block
-    padding var(--rem1) 0.75rem
-    text-align center
-    border-radius var(--rem1)
-    border-style solid
-    line-height 1.5
-
-    --background-color var(--c4)
-    --border-color var(--c2)
-    --color var(--c1)
-
-    --background-color-hover var(--c5)
-    --background-color-active var(--c2)
-    --background-color-disabled var(--c3)
-
-    --color-active var(--c5)
-
-    --border-color-active var(--c4)
-
-+box('.s3')
-    // display inline-block
-    padding 0.5rem 1rem
-    border-style solid
-    border-radius var(--rem1)
-
-    --background-color var(--c1)
-    --border-color var(--c3)
-    --color var(--c5)
-
-    --background-color-hover var(--c2)
-    --background-color-active var(--c2)
-    --border-color-active var(--c4)
-
-    --color-hover var(--c7)
-
-    --color-disabled var(--c3)
-
-+box(boxes)
-    list-style none
-    background-color var(--background-color)
-    border-color var(--border-color)
-    color var(--color)
-    &>a
-        text-decoration none
-        color var(--color)
-
-.ttt
-    @extend .t2
-    @extend .arrow
-    @extend .box-s3
-    @extend .g1
-    color var(--c4)
-    background-color var(--c3)
-    width 100px
-    height 100px
-    border 1px solid var(--c4)
+ps(sel)
+    ar = ()
+    push(ar, sel)
+    push(ar, '_' + sel + '>*')
+    push(ar, '__' + sel)
+    push(ar, '__' + sel + '>*')
+    for i in ar_parent
+        push(ar, '_' + sel + i)
+        push(ar, '__' + sel + i)
+    for i in ar_parent2
+        push(ar, '__' + sel + i)
+    .{join(', .', ar)}
+        {block}
